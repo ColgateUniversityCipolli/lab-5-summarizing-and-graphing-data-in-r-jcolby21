@@ -1,0 +1,143 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\usepackage{amsmath} %This allows me to use the align functionality.
+\usepackage{amsfonts} %Math font
+\usepackage{graphicx} %For including graphics
+\usepackage{booktabs}
+\usepackage{hyperref} %For Hyperlinks
+\usepackage[shortlabels]{enumitem} % For enumerated lists with labels specified
+\hypersetup{colorlinks = true, citecolor=black} %set citations to have black (not green) color
+\usepackage{natbib} %For the bibliography
+\setlength{\bibsep}{0pt plus 0.3ex}
+\bibliographystyle{apalike} %For the bibliography
+\usepackage[margin=0.50in]{geometry}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{caption}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\vspace{-1in}
+\title{Lab 2/3 -- MATH 240 -- Computational Statistics}
+
+\author{
+  Jackson Colby \\
+  Colgate University  \\
+  Mathematics  \\
+  {\tt jcolby@colgate.edu}
+}
+
+\date{}
+
+\begin{multicols}{2}
+\maketitle
+
+\section{Introduction}
+This lab introduced us to new places to explore in R including different types of files and functions. We are introduced to two new packages, \citep{stringr} and \citep{jsonlite}. This lab focuses on working directories and importing files and extracting data. Additionally, the lab makes you clean and compile the data into a form where it is helpful to answer whatever research question you are trying to solve, which in this case is which of \emph{The Front Bottoms} or \emph{Manchester Orchestra} had more of an impact on the song \emph{Allentown}.
+
+\section{Methods}
+For this lab, we were given a folder to download, called MUSIC, containing subfolders and .wav audio files. This part of the Lab consisted of two parts, Task 1 and Task 2, with the goal of editing the .wav files to output a batch file. The second part of the lab involved receiving .csv files containing JSON data which was cleaned and compiled to help answer the overall question.
+
+\subsection{Methods for Task 1}
+The overall goal for this task was to work on directory skills and build a batch file for data processing. By accessing the downloaded folder called MUSIC, we worked with the .wav files inside. The end product was to create a batch file, which could be used in Task 2 to help obtain information such as attributes about the songs.
+
+\subsection{Methods for Task 2}
+The goal for Task 2 was to process JSON output and extract relevant information from the JSON file. This task helped set up for Lab 3, where we used these skills to analyze the attributes of the data using the \emph{jsonlite} package \citep{jsonlite}.
+
+\subsection{Methods for Lab 3}
+The goal of this lab was to learn how to clean and compile data into data frames and CSV files for comparison in the overall question: Which band contributed most to the song? The song in question is *Allentown*, composed by \emph{The Front Bottoms} and \emph{Manchester Orchestra}.
+
+To achieve this, we utilized packages for \texttt{R}, such as \citep{stringr} and \citep{jsonlite}. The goal was to iterate through the JSON data in a file called \emph{EssentiaModelOutput} and extract the data we needed into a data frame. This data frame was then used to find some attributes about the song such as overall loudness and danceability, which could help compare the songs. After manipulating the data, we merged the relevant information into a new data frame, saving it into CSV files: one containing all 180 songs other than \emph{Allentown}, and the other containing only \emph{Allentown}.
+
+\subsection{Methods for Lab 5}
+
+% Ensure content for Lab 5 is added
+
+\begin{tiny}
+\bibliography{bib}
+\end{tiny}
+
+\end{multicols}
+
+\section{Results}
+\subsection{Lab 3 Coding Challenge}
+The objective of the coding challenge was to compare the two bands to see which had more of an impact on the song \emph{Allentown}. I created box plots to compare attributes between \emph{Allentown} and the averages for the two bands, allowing us to determine similarities and differences.
+
+The two attributes compared were instrumental and linguistic.
+
+The instrumental for \emph{Allentown} is 0.235, which is much closer to the average for Manchester Orchestra, suggesting that they may have had a larger impact on the instrumental aspect of the song.
+
+The linguistic for Allentown is 80.5, which is close to the averages for both bands, meaning they could have contributed similarly to the linguistic features of the song.
+
+\subsection{Table for Select Features Lab 5}
+The table below shows statistics for the selected features: overall loudness, danceability, and timbreBright, as well as analytic features.
+
+% Table code here...
+\end{table}
+
+\newpage  % Page break for next section
+
+\subsection{Average Comparison for Select Features}
+Here's the comparison of the average feature values for each artist and "Allentown":
+
+\section{Feature Comparison of Artists}
+The following plots compare the average values of various features across different artists.
+
+% R code for plotting goes here...
+
+\section{Discussion}
+As seen in the figures above, there is no definitive answer between the artists, Manchester Orchestra, All Get Out, and The Front Bottoms. However, the data suggests that Manchester Orchestra fits best with the selected features, indicating they may have contributed more to the song.
+
+\end{document}

@@ -1,0 +1,200 @@
+\documentclass{article}
+
+\usepackage{amsmath} %This allows me to use the align functionality.
+                     %If you find yourself trying to replicate
+                     %something you found online, ensure you're
+                     %loading the necessary packages!
+\usepackage{amsfonts}%Math font
+\usepackage{graphicx}%For including graphics
+\usepackage{booktabs}
+\usepackage{hyperref}%For Hyperlinks
+\usepackage[shortlabels]{enumitem}% For enumerated lists with labels specified
+                                  % We had to run tlmgr_install("enumitem") in R
+\hypersetup{colorlinks = true,citecolor=black} %set citations to have black (not green) color
+\usepackage{natbib}        %For the bibliography
+\setlength{\bibsep}{0pt plus 0.3ex}
+\bibliographystyle{apalike}%For the bibliography
+\usepackage[margin=0.50in]{geometry}
+\usepackage{float}
+\usepackage{multicol}
+
+%fix for figures
+\usepackage{caption}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+
+
+
+
+\begin{document}
+\vspace{-1in}
+\title{Lab 5 -- MATH 240 -- Computational Statistics}
+
+\author{
+  Jackson Colby \\
+  Colgate University  \\
+  Mathematics  \\
+  {\tt jcolby@colgate.edu}
+}
+
+\date{}
+
+\maketitle
+
+\begin{multicols}{2}
+
+
+\section{Introduction}
+This lab introduced us to new places to explore in \texttt{R} including different types of files and functions. We are introduced to two new packages, \emph{stringr} \citep{stringr} and \emph{jsonlite} \citep{jsonlite}. This lab focuses on working directories and importing files and extracting data. Additionally, the lab makes you clean and compile the data into a form where it is helpful to answer whatever research question you are trying to solve, which in this case is which of \emph{The Front Bottoms}, \emph{All Get Out} or \emph{Manchester Orchestra} had more of an impact on the song \emph{Allentown}.
+
+\section{Methods}
+
+\subsection{Lab 2}
+For this lab we were given a folder to download, called MUSIC containing sub folders and .wav audio files. This part of the Lab consisted of two parts, Task 1 and Task 2 which the goal of them was to edit the .wav files to output a batfile.The second part of the lab we recieved .csv files where they contained json data which was to be cleaned and compiled to help answer the overall question. The \emph{stringr} package, \citep{stringr} was utilized to acheive this goal.
+
+\subsection{Methods for Task 1}
+The overall goal for this task was to work on directory skills, building a batch file for data processing. Through accessing a downloaded folder called MUSIC you could work with the .wav files inside. The end product is to build a batch file which can be used in Task 2 to help obtain information such as attributes about the songs.
+\subsection{Methods for Task 2}
+The overall goal for Task 2 was to process JSON Output and extract some information from the JSON file. This task helped set up for Lab 3 where we used the skills to help find attrubytes of the data using \emph{jsonlite} package \citep{jsonlite}.
+
+\subsection{Methods for Lab 3}
+The overall goal for this lab was to learn how to clean and compile data into data frames and csv files to be applied to the overall question of, Which band contributes most to the song? The song in question being \emph{Allentown}, which was composed by \emph{The Front Bottoms}, \emph{All Get Out}, and the \emph{Manchester Orchestra}. 
+
+In order to acheive the goal of comparing the two bands on the song, packages for \texttt{R} such as \emph{stringr}, \citep{stringr} and \emph{jsonlite}, \citep{jsonlite} were used. The goal was to iterate through json data in a folder called \emph{EssentiaOutput}, and extract the data we wanted into a data frame. This data frame was then used to store some attributes about the song such as overall loudness and danceability, which could be used to compare and contrast songs. After manipulating the dataframe, we merged all the data we wanted to save into a new data frame and saved these into csv files where one contained all 180 songs other than \emph{Allentown}, and the other just contained \emph{Allentown}. 
+
+\subsection{Methods for Lab 5}
+This lab emphasized answering the overall question, which band contributed the most to the song \emph{Allentown} by using the library \emph{tidyverse}, \citep{tidyverse}. Through functions such as \texttt{group\_by(), summarize(), and mutate()}, a new data set was created that stored data for all the features of the averages for each of the three artists, and the song \emph{Allentown}. After the new table was created, select features were chosen to create tables using \emph{xtable},\citep{xtable} and plots using \emph{patchwork}, \citep{patchwork}.
+
+
+\end{multicols}
+
+\section{results}
+
+\subsection{Lab 3 Coding Challenge}
+The objective of the coding challenge was to compare the three bands to see which had more of an impact on the song \emph{Allentown}. In order to do so, I created two sets of box plots to compare the attributes instrumental and linguistic of Allentown to the averages of the bands, to see if Allentown was more similar in style to either of the two bands.
+
+
+The instrumental for \emph{Allentown} is 0.235 which is a lot closer to the average for Manchester Orchesta potentially suggesting they have a larger impact on the song, in particular the instrumental of the song.
+
+The Linguistic for Allentown is 80.5 which is close to the averages for both bands meaning that they could have contributed a similar amount for the linguistics, and other characteristics may be better for determining who had more impact.
+
+
+\subsection{Table for Select Features Lab 5}
+The table below shows statistcs for the selected features, overall_loudness, danceability, and timbreBright, and analytic.
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+  \begin{tabular}{llrrrrl}
+    \toprule
+    artist & feature & min\_feature & LF\_feature & UF\_feature & max\_feature & description \\
+\midrule
+All Get Out & overall\_loudness & -14.27 & -16.35 & -1.34 & -6.13 & Within Range \\
+Manchester Orchestra & overall\_loudness & -24.34 & -20.22 & -0.80 & -6.26 & Within Range \\
+The Front Bottoms & overall\_loudness & -11.03 & -9.65 & -5.87 & -5.71 & Outlying \\
+All Get Out & danceability & 0.84 & 0.77 & 1.32 & 1.30 & Within Range \\
+Manchester Orchestra & danceability & 0.78 & 0.65 & 1.39 & 1.40 & Within Range \\
+The Front Bottoms & danceability & 0.91 & 0.86 & 1.37 & 1.33 & Out of Range \\
+All Get Out & timbreBright & 0.44 & 0.43 & 0.49 & 0.47 & Within Range \\
+Manchester Orchestra & timbreBright & 0.44 & 0.44 & 0.49 & 0.48 & Within Range \\
+The Front Bottoms & timbreBright & 0.44 & 0.42 & 0.49 & 0.47 & Within Range \\
+All Get Out & Analytic & 1.00 & -35.00 & 65.55 & 85.25 & Outlying \\
+Manchester Orchestra & Analytic & 1.00 & -19.46 & 40.27 & 78.96 & Outlying \\
+The Front Bottoms & Analytic & 1.00 & -26.16 & 52.27 & 57.73 & Out of Range \\
+    \bottomrule
+  \end{tabular}
+}
+\caption{Feature Summary for Allentown's Collaborative Track}
+\label{tab:feature_summary}
+\end{table}
+
+
+<<boxplot_plots, echo=FALSE, fig.width=6, fig.height=4>>=
+  # Load required libraries
+  library(ggplot2)
+library(patchwork)
+library(dplyr)
+
+data= read.csv("data/essentia.data.csv") #gathers data for all 180 songs other than Allentown
+allentown.data=read.csv("data/essentia.data.allentown.csv") #gathers data for the song Allentown
+
+# Function to create box plot for a given feature, highlighting "Allentown"
+create_feature_plot <- function(feature) {
+  all_data <- bind_rows(
+    data %>% select(artist, feature) %>% mutate(type = "Other"),
+    allentown.data %>% select(feature) %>% mutate(artist = "Allentown", type = "Allentown")
+  )
+  
+  p <- ggplot(all_data, aes(x = artist, y = get(feature), fill = type)) +
+    geom_boxplot(alpha = 0.5, outlier.colour = "red", outlier.shape = 16) +
+    labs(title = paste("Boxplot of", feature, "Comparison"), x = "Artist", y = feature) +
+    scale_fill_manual(values = c("Other" = "gray", "Allentown" = "red")) +
+    theme_minimal()
+  
+  return(p)
+}
+
+# Create plots for each feature
+plot_loudness <- create_feature_plot("overall_loudness")
+plot_danceability <- create_feature_plot("danceability")
+plot_analytic <- create_feature_plot("Analytic")
+plot_dissonance <- create_feature_plot("dissonance")
+
+# Combine the plots using patchwork
+final_boxplot <- (plot_loudness | plot_danceability) / (plot_analytic | plot_dissonance)
+
+# Display the plot
+final_boxplot
+@
+  
+  \newpage  % Create a page break for the next section
+
+\subsection{Average Comparison for Select Features}
+Here’s the comparison of the average feature values for each artist and "Allentown":
+
+\section{Feature Comparison of Artists}
+
+The following plots compare the average values of various features across different artists.
+
+<<echo=FALSE, fig.width=6, fig.height=4>>=
+  # Load necessary libraries
+  library(ggplot2)
+library(patchwork)
+
+# Assuming features_to_compare and create_avg_comparison() are already defined
+feature_plots <- lapply(features_to_compare, function(feature) {
+  avg_comparison <- create_avg_comparison(feature)  # Get average values for the feature
+  
+  # Create a bar plot for average comparison
+  p <- ggplot(avg_comparison, aes(x = artist, y = mean_value, fill = type)) +
+    geom_bar(stat = "identity", position = "dodge", show.legend = FALSE) +  # Bar plot
+    labs(title = paste("Average", feature, "Comparison"),
+         x = "Artist",
+         y = paste("Average", feature)) +
+    scale_fill_manual(values = c("Other" = "gray", "Allentown" = "red")) +  # Custom colors
+    theme_minimal() +  # Minimal plot theme
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 8),  # Rotate x-axis labels
+          plot.title = element_text(hjust = 0.5),  # Center title
+          axis.title.x = element_text(size = 10),  # Increase x-axis title size
+          axis.title.y = element_text(size = 10))  # Increase y-axis title size
+  
+  return(p)  # Return the plot
+})
+
+# Combine the bar plots into one plot using patchwork
+final_avg_plot <- (feature_plots[[1]] | feature_plots[[2]]) / (feature_plots[[3]] | feature_plots[[4]])
+
+# Print the final combined plot
+final_avg_plot
+@
+
+\section{Discussion}
+As seen in the figures above, there is no definitive answer between the artists, Manchester Orchestra, All Get Out, and The Front Bottoms. The charts show however that the averages and data for the selected features fit best with Manchester Orchestra suggesting that they are the band that contributed most to the song. 
+
+\begin{tiny}
+\bibliography{bib}
+\end{tiny}
+
+
+\end{document}
