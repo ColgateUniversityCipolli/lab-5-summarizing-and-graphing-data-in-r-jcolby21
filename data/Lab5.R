@@ -55,3 +55,24 @@ for (feature in colnames(data)) {
 final_results <- bind_rows(results_list, .id = "feature")
 
 
+library(xtable)
+# Select relevant columns for the table
+table_data <- final_results %>%
+  select(artist, feature, min_feature, LF_feature, UF_feature, max_feature, description)
+
+#creates a subset of table_data containing all the features you want
+table_data_subset = table_data %>%
+  filter(feature %in% c("overall_loudness", "danceability", 
+                        "Analytic", "timbreBright"))
+
+# Create table using xtable to copy over to LaTeX
+latex_table <- xtable(table_data_subset, 
+                      caption = "Feature Summary for Allentown's Collaborative Track", 
+                      label = "tab:feature_summary")
+
+
+# Print the LaTeX table
+print(latex_table, type = "latex", include.rownames = FALSE)
+
+
+
